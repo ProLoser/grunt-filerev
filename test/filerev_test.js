@@ -26,4 +26,20 @@ describe('filerev', function () {
     var revisioned= fs.statSync('test/tmp/expand/file.a0539763.png').size;
     assert(revisioned === original);
   });
+
+  it('should copy the file when copy option is true', function () {
+    var original = fs.statSync('test/fixtures/another.png').size;
+    var revisioned= fs.statSync('test/tmp/another.37ba.png').size;
+    assert(revisioned === original);
+    var fileExists = fs.existsSync('test/tmp/another.png');
+    assert(fileExists === true);
+  });
+
+  it('should move the file when copy option is false', function () {
+    var original = fs.statSync('test/fixtures/movedfile.png').size;
+    var revisioned= fs.statSync('test/tmp/copyfalse/movedfile.37ba.png').size;
+    assert(revisioned === original);
+    var fileExists = fs.existsSync('test/tmp/movedfile.png');
+    assert(fileExists === false);
+  });
 });
