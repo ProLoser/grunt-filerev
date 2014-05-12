@@ -67,7 +67,7 @@ Type: `Boolean`
 Default: `null`
 
 Flag controlling whether the original file is copied or moved. If not set, 
-other parameters, such as setting a [destination](#destination) control the behaviour
+other parameters, such as setting a [destination](#destination) control the behaviour.
 
 ### Destination
 
