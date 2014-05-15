@@ -42,4 +42,20 @@ describe('filerev', function () {
     var fileExists = fs.existsSync('test/tmp/movedfile.png');
     assert(fileExists === false);
   });
+
+  it('should copy the file without copy option when dest is specified', function () {
+    var original = fs.statSync('test/fixtures/another.png').size;
+    var revisioned= fs.statSync('test/tmp/nocopy/another.37ba.png').size;
+    assert(revisioned === original);
+    var fileExists = fs.existsSync('test/tmp/another.png');
+    assert(fileExists === true);
+  });
+
+  it('should move the file without copy option when dest is not specified', function () {
+    var original = fs.statSync('test/fixtures/movednocopyfile.png').size;
+    var revisioned= fs.statSync('test/tmp/movednocopyfile.37ba.png').size;
+    assert(revisioned === original);
+    var fileExists = fs.existsSync('test/tmp/movednocopyfile.png');
+    assert(fileExists === false);
+  });
 });
