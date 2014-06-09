@@ -37,6 +37,9 @@ module.exports = function (grunt) {
       }
 
       el.src.forEach(function (file) {
+        if (grunt.file.isDir(file)) {
+          return;
+        }
         var dirname;
         var hash = crypto.createHash(options.algorithm).update(grunt.file.read(file), options.encoding).digest('hex');
         var suffix = hash.slice(0, options.length);
