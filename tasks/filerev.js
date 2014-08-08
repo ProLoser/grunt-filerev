@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         try {
           var stat = fs.lstatSync(el.dest);
           if (stat && !stat.isDirectory()) {
-            grunt.fail.fatal('Destination ' + el.dest  + ' for target ' + target + ' is not a directory');
+            grunt.fail.fatal('Destination for target %s is not a directory', target);
           }
         } catch (err) {
           grunt.log.writeln('Destination dir ' + el.dest + ' does not exists for target ' + target + ': creating');
@@ -37,9 +37,6 @@ module.exports = function (grunt) {
       }
 
       el.src.forEach(function (file) {
-        if (grunt.file.isDir(file)) {
-          return;
-        }
         var dirname;
         var hash = crypto.createHash(options.algorithm).update(grunt.file.read(file), options.encoding).digest('hex');
         var suffix = hash.slice(0, options.length);
