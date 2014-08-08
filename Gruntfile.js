@@ -69,6 +69,21 @@ module.exports = function (grunt) {
         },
         src: ['test/tmp/movedfile.png'],
         dest: 'test/tmp/copyfalse'
+      },
+      withCopyNullDest: {
+        options: {
+          algorithm: 'sha1',
+          length: 4
+        },
+        src: ['test/tmp/another.png'],
+        dest: 'test/tmp/nocopy'
+      },
+      withCopyNullNoDest: {
+        options: {
+          algorithm: 'sha1',
+          length: 4
+        },
+        src: ['test/tmp/movednocopyfile.png']
       }
     },
     simplemocha: {

@@ -47,14 +47,7 @@ module.exports = function (grunt) {
         dirname = el.dest ? el.dest : path.dirname(file);
         resultPath = path.resolve(dirname, newName);
 
-        if (options.copy === null) {
-          // If options.copy is null, defer to wether or not destination is defined (old behavior)
-          if (el.dest) {
-            grunt.file.copy(file, resultPath);
-          } else {
-            fs.renameSync(file, resultPath);
-          }
-        } else if (options.copy) {
+        if (options.copy || (options.copy === null && el.dest)) {
           grunt.file.copy(file, resultPath);
         } else {
           fs.renameSync(file, resultPath);
